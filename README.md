@@ -13,7 +13,9 @@
 </div>
 
 ## News
-**[Jul 2026]** 🚀 The 2Xplat demo is now available on 🤗 Hugging Face! Check it out [here](https://huggingface.co/spaces/HwasikJeong/2Xplat)!
+**[Aug 2026]** 🚀 Released 2Xplat v2, trained a new appearance expert with multi-resolution support on 11 datasets comprising nearly 34M samples! The [2Xplat v2 checkpoint](https://huggingface.co/HwasikJeong/2Xplat/resolve/main/2xplat_v2_hr.pt) and demo are now available on 🤗 Hugging Face.
+
+**[Jul 2026]** The 2Xplat demo is now available on 🤗 Hugging Face! Check it out [here](https://huggingface.co/spaces/HwasikJeong/2Xplat)!
 
 ## Installation
 
