@@ -6,7 +6,7 @@ einops>= 0.4.1
 torchmetrics>= 0.11.0
 datasets==2.14.5
 rich>=13.3.2
-wandb==0.18.7
+wandb==0.28.1
 opencv-python==4.7.0.72
 opencv-python-headless==4.7.0.72
 easydict==1.13
