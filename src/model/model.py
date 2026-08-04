@@ -662,7 +662,7 @@ class TwoExpertModel(nn.Module):
             out_channels=[self.dim1, self.dim2, self.dim3],
         )
 
-        if self.mvp_weights_path is not None:
+        if self.mvp_weights_path != "":
             checkpoint = torch.load(self.mvp_weights_path, map_location="cpu", weights_only=True)
             state_dict = checkpoint["ema"] if "ema" in checkpoint else checkpoint
             result = self.load_state_dict(state_dict, strict=False)
@@ -673,7 +673,7 @@ class TwoExpertModel(nn.Module):
     def _build_geometry_modules(self):
         """Build the DA3 pose regressor and optionally load pretrained weights."""
         self.pose_regressor = DepthAnything3(model_name=self.da_model_name)
-        if self.da_weights_path is not None:
+        if self.da_weights_path != "":
             state_dict = load_file(self.da_weights_path)
             results = self.pose_regressor.load_state_dict(state_dict, strict=False)
             # print(f"{results.missing_keys} missing keys")
