@@ -93,7 +93,7 @@ If you find our work useful, please cite:
 
 ```bibtex
 @article{jeong2026twoxplat,
-          title={2Xplat: Two Experts Are Better Than One Generalist},
+          title={2Xplat: Decoupling Geometry and Appearance Modeling for Feed-Forward 3D Gaussian Splatting},
           author={Hwasik Jeong and Seungryong Lee and and Gyeongjin Kang and Seungkwon Yang and Xiangyu Sun and Seungtae Nam and Eunbyung Park},
           journal={arXiv preprint arXiv:2603.21064},
           year={2026}
