@@ -37,6 +37,49 @@ def _init_weights(module: nn.Module) -> None:
         torch.nn.init.normal_(module.weight, mean=0.0, std=0.02)
 
 
+def _fit_similarity(
+    source_c2w: torch.Tensor,     # (B, V, 4, 4)
+    reference_c2w: torch.Tensor,  # (B, V, 4, 4)
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    """Fit the Sim(3) that maps ``source`` context poses onto ``reference`` ones."""
+    source_c2w, reference_c2w = source_c2w.detach(), reference_c2w.detach()
+    b = source_c2w.shape[0]
+
+    src_rot, ref_rot = source_c2w[:, :, :3, :3], reference_c2w[:, :, :3, :3]
+    u, _, vh = torch.linalg.svd((ref_rot @ src_rot.transpose(-1, -2)).sum(dim=1))
+    correction = torch.eye(3, dtype=u.dtype, device=u.device).expand(b, 3, 3).clone()
+    correction[:, 2, 2] = torch.det(u @ vh)
+    rotation = u @ correction @ vh                                    # (B, 3, 3)
+
+    src_c, ref_c = source_c2w[:, :, :3, 3], reference_c2w[:, :, :3, 3]
+    src_mean, ref_mean = src_c.mean(dim=1), ref_c.mean(dim=1)
+    rotated = (src_c - src_mean[:, None]) @ rotation.transpose(-1, -2)
+    scale = (
+        (rotated * (ref_c - ref_mean[:, None])).sum(dim=(1, 2))
+        / rotated.square().sum(dim=(1, 2)).clamp_min(1e-12)
+    )                                                                 # (B,)
+    translation = ref_mean - scale[:, None] * (src_mean[:, None] @ rotation.transpose(-1, -2))[:, 0]
+    return rotation, scale, translation
+
+
+def _apply_similarity(
+    c2w: torch.Tensor,          # (B, N, 4, 4)
+    rotation: torch.Tensor,     # (B, 3, 3)
+    scale: torch.Tensor,        # (B,)
+    translation: torch.Tensor,  # (B, 3)
+) -> torch.Tensor:
+    """Apply ``c -> scale * rotation @ c + translation`` to a batch of camera poses."""
+    rot = rotation[:, None] @ c2w[:, :, :3, :3]
+    trans = (
+        scale[:, None, None] * (c2w[:, :, :3, 3] @ rotation.transpose(-1, -2))
+        + translation[:, None]
+    )
+    # Avoid in-place writes on sliced views to keep autograd version tracking consistent.
+    return torch.cat(
+        [torch.cat([rot, trans.unsqueeze(-1)], dim=-1), c2w[:, :, 3:, :]], dim=-2,
+    )
+
+
 # ---------------------------------------------------------------------------
 # Structured output types
 # ---------------------------------------------------------------------------
@@ -93,7 +136,9 @@ class GeometryExpert:
         gt_t_fxfycxcy = target_data_dict["fxfycxcy"].float()
         gt_t_c2w = target_data_dict["c2w"].float()
 
-        pred_i_fxfycxcy, pred_i_c2w, pred_t_fxfycxcy, pred_t_c2w = self._run_da3_and_normalize(
+        # Training regresses all views jointly; inference keeps the context cameras independent of the target images.
+        run_da3 = self._run_da3_separate if self.inference_mode else self._run_da3_and_normalize
+        pred_i_fxfycxcy, pred_i_c2w, pred_t_fxfycxcy, pred_t_c2w = run_da3(
             input_data_dict["image"], target_data_dict["image"],
         )
 
@@ -145,6 +190,26 @@ class GeometryExpert:
                 target_c2ws=t_c2w_raw,
                 scene_scale=self.scene_scale,
             )
+        return i_fxfycxcy, i_c2w, t_fxfycxcy, t_c2w
+
+    def _run_da3_separate(
+        self,
+        input_images: torch.Tensor,
+        target_images: torch.Tensor,
+    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+        """Predict context cameras from the context views only, then the target ones."""
+        i_fxfycxcy, i_c2w, t_fxfycxcy, t_c2w = self._run_da3_and_normalize(
+            input_images, input_images[:, :0],
+        )
+        if target_images.shape[1] == 0:
+            return i_fxfycxcy, i_c2w, t_fxfycxcy, t_c2w
+
+        _, pass2_i_c2w, t_fxfycxcy, t_c2w = self._run_da3_and_normalize(
+            input_images, target_images,
+        )
+        with torch.autocast(device_type="cuda", enabled=False):
+            rotation, scale, translation = _fit_similarity(pass2_i_c2w, i_c2w)
+            t_c2w = _apply_similarity(t_c2w, rotation, scale, translation)
         return i_fxfycxcy, i_c2w, t_fxfycxcy, t_c2w
 
     @staticmethod
