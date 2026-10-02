@@ -31,7 +31,7 @@ body {
   position: relative;
   margin: 0;
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Cormorant Infant', 'Castoro', serif;
   background: transparent;
 }
 
@@ -65,7 +65,7 @@ body {
 
 .nav-brand {
   color: var(--surface-ink);
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Cormorant Infant', 'Castoro', serif;
   font-size: 1.1rem;
   text-decoration: none;
 }
@@ -257,7 +257,7 @@ body {
   display: block;
   margin-bottom: 0.45rem;
   color: var(--surface-ink);
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Cormorant Infant', 'Castoro', serif;
   font-size: 1.5rem;
   line-height: 1.1;
 }
@@ -275,7 +275,7 @@ body {
   margin: 0 auto 0.4rem !important;
   max-width: 16ch;
   text-align: center;
-  font-family: 'DM Serif Display', serif !important;
+  font-family: 'Cormorant Infant', 'Castoro', serif !important;
   font-size: clamp(2.2rem, 5vw, 3.5rem) !important;
   line-height: 1.15 !important;
   letter-spacing: -0.02em !important;
@@ -293,7 +293,7 @@ body {
 
 .publication-authors {
   width: 100%;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Cormorant Infant', 'Castoro', serif;
   color: var(--text);
   line-height: 1.9;
   font-size: 0.93rem;
@@ -352,7 +352,7 @@ body {
   color: #fff !important;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06) !important;
   letter-spacing: 0.01em !important;
-  font-family: 'DM Sans', sans-serif !important;
+  font-family: 'Cormorant Infant', 'Castoro', serif !important;
   font-size: 0.84rem !important;
   font-weight: 600 !important;
   height: auto !important;
@@ -469,7 +469,7 @@ body {
 .media-shell .title,
 .section-heading-row .title,
 .bibtex-shell .title {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Cormorant Infant', 'Castoro', serif;
   font-size: clamp(1.9rem, 3vw, 2.6rem);
   font-weight: 400;
   letter-spacing: -0.015em;
@@ -515,7 +515,7 @@ body {
 
 .subtitle {
   color: var(--muted) !important;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Cormorant Infant', 'Castoro', serif;
   line-height: 1.75;
 }
 
@@ -661,7 +661,7 @@ body {
   writing-mode: vertical-rl;
   text-orientation: mixed;
   transform: rotate(180deg);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Cormorant Infant', 'Castoro', serif;
   box-shadow: none;
 }
 
@@ -786,7 +786,7 @@ body {
   font-weight: 700;
   z-index: 5;
   pointer-events: none;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Cormorant Infant', 'Castoro', serif;
 }
 
 .video-label-left {

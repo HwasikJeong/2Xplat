@@ -67,7 +67,7 @@
     .publication-authors,
     .new-btn,
     .carousel-left-label-text {
-      font-family: 'Sora', 'Noto Sans', sans-serif;
+      font-family: 'Cormorant Infant', 'Castoro', serif;
       color: #1f2940;
     }
 
@@ -134,16 +134,17 @@
 
     /* Publication title — keep original */
     .publication-title {
-      max-width: 980px;
+      max-width: 100% !important;
       margin-left: auto;
       margin-right: auto;
       margin-bottom: 0.9rem !important;
       line-height: 1.04;
-      font-family: 'Castoro', serif;
+      font-family: 'Cormorant Infant', 'Castoro', serif;
     }
 
     .title-lockup {
-      display: inline-flex;
+      display: flex;
+      width: 100%;
       align-items: flex-start;
       justify-content: center;
       gap: 0;
@@ -152,6 +153,8 @@
 
     .title-stack {
       display: flex;
+      width: 100%;
+      min-width: 0;
       flex-direction: column;
       align-items: center;
     }
@@ -198,17 +201,20 @@
     .title-sub {
       margin-top: 2.5rem;
       max-width: 100%;
-      white-space: nowrap;
+      white-space: normal;
       font-family: 'Cormorant Infant', 'Castoro', serif;
       font-size: clamp(1.02rem, 2.5vw, 2.5rem);
-      font-weight: 400;
+      font-weight: 700;
+      -webkit-text-stroke: 0.6px currentColor;
       letter-spacing: -0.01em;
       line-height: 1.35;
-      color: #3f4b62;
+      color: #16223a;
     }
 
     .title-sub .x-mark {
       display: inline-block;
+      -webkit-text-stroke: 0.6px #2535ad;
+      font-size: 1.2em;
       background: linear-gradient(90deg, #08c437, #131ee2);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -223,8 +229,8 @@
     .publication-authors {
       max-width: 860px;
       margin: 0 auto;
-      font-family: 'Manrope', 'Sora', sans-serif;
-      font-size: 1.08rem;
+      font-family: 'Cormorant Infant', 'Castoro', serif;
+      font-size: 1.3rem;
       line-height: 2.05;
       text-align: center;
     }
@@ -265,8 +271,8 @@
     /* affiliations */
     .affiliation-line {
       margin-top: 0.7rem;
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.12rem;
+      font-family: 'Cormorant Infant', 'Castoro', serif;
+      font-size: 1.3rem;
       color: #33415c;
       letter-spacing: 0.01em;
     }
@@ -279,7 +285,7 @@
     }
 
     .affiliation-chip sup {
-      font-family: 'Sora', sans-serif;
+      font-family: 'Cormorant Infant', 'Castoro', serif;
       font-size: 0.62em;
       color: #8892a2;
       vertical-align: super;
@@ -294,7 +300,7 @@
       text-transform: uppercase;
       color: #6e7b94;
       font-weight: 700;
-      font-family: 'Manrope', 'Sora', sans-serif;
+      font-family: 'Cormorant Infant', 'Castoro', serif;
     }
 
     .author-note span {
@@ -309,7 +315,7 @@
       justify-content: center !important;
       gap: 0.85rem !important;
       margin: 1.35rem auto 0 !important;
-      max-width: 460px;
+      max-width: 540px;
     }
 
     /* kill index.css .link-block a dark style */
@@ -327,8 +333,8 @@
       min-width: 132px !important;
       border-radius: 10px !important;
       text-decoration: none !important;
-      font-family: 'Manrope', 'Sora', sans-serif !important;
-      font-size: 0.92rem !important;
+      font-family: 'Cormorant Infant', 'Castoro', serif !important;
+      font-size: 1.15rem !important;
       font-weight: 500 !important;
       letter-spacing: 0.02em !important;
       line-height: 1 !important;
@@ -506,7 +512,7 @@
       border: 1px solid rgba(22, 34, 58, 0.1);
       background: rgba(255, 255, 255, 0.78);
       box-shadow: 0 8px 18px rgba(26, 38, 66, 0.04);
-      font-family: 'Sora', 'Noto Sans', sans-serif;
+      font-family: 'Cormorant Infant', 'Castoro', serif;
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -919,7 +925,7 @@
       display: block;
       width: 100%;
       text-align: center;
-      font-family: 'Sora', 'Noto Sans', sans-serif;
+      font-family: 'Cormorant Infant', 'Castoro', serif;
       font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.03em;
@@ -1072,7 +1078,8 @@
           <span class="title-lockup">
             <span class="title-stack" style="margin-top: -5.0rem;">
               <!-- <span class="title-mark">2<span class="x-mark">X</span>plat</span> -->
-              <span class="title-sub">2<span class="x-mark">X</span>plat: Decoupling Geometry and Appearance Modeling for Feed-Forward 3D Gaussian Splatting</span>
+              <span class="title-sub">2<span class="x-mark">X</span>plat: Decoupling Geometry and Appearance Modeling
+                for Feed-Forward 3D Gaussian Splatting</span>
             </span>
           </span>
         </h1>
@@ -1171,25 +1178,31 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Pose-free feed-forward 3D Gaussian Splatting (3DGS) has opened a new frontier for rapid 3D modeling,
-              enabling high-quality Gaussian representations to be generated from uncalibrated multi-view images in a
-              single forward pass. The dominant approach in this space adopts unified monolithic architectures, often
-              built on geometry-centric 3D foundation models, to jointly estimate camera poses and synthesize 3DGS
-              representations within a single network. While architecturally streamlined, such ``all-in-one'' designs
-              may be suboptimal for high-fidelity 3DGS generation, as they entangle geometric reasoning and appearance
-              modeling within a shared representation. In this work, we introduce <b>2Xplat</b>, a pose-free
-              feed-forward 3DGS framework based on a two-expert design that explicitly separates geometry estimation
-              from Gaussian generation. A dedicated geometry expert first predicts camera poses, which are then
-              explicitly passed to a powerful appearance expert that synthesizes 3D Gaussians. Despite its conceptual simplicity, 
-              and being largely underexplored in prior works, our two-experts pipeline outperforms prior pose-free feed-forward 3DGS approaches in fewer
+              Pose-free feed-forward 3D Gaussian Splatting (3DGS) has
+              opened a new frontier for rapid 3D modeling, enabling highquality Gaussian representations to be generated
+              from uncalibrated multi-view images in a single forward pass. The dominant approach adopts unified
+              monolithic architectures, often
+              built on geometry-centric 3D foundation models, to jointly
+              estimate camera poses and synthesize 3DGS representations
+              within a single network, entangling geometric reasoning and
+              appearance modeling within a shared representation. In this
+              work, we introduce 2Xplat, a pose-free feed-forward 3DGS
+              framework based on a two-experts design that explicitly separates geometry estimation from Gaussian
+              generation: a dedicated geometry expert first predicts camera poses, which are
+              then passed to an appearance expert that synthesizes 3D Gaussians. Despite its conceptual simplicity, and
+              being largely underexplored in prior works, our two-experts pipeline outperforms prior pose-free
+              feed-forward 3DGS approaches in fewer
               than 5K training iterations, achieving performance on par with
               state-of-the-art posed methods. These results challenge the
-              prevailing unified paradigm and suggest the potential advantages of modular design for complex 3D geometric estimation
+              prevailing unified paradigm and suggest the potential advantages of modular design for complex 3D
+              geometric estimation
               and appearance synthesis tasks.
             </p>
             <p class="has-text-centered" style="font-size: 0.9em; color: #666; margin-top: 1rem;">
-              <em>Note: all 2Xplat visualizations are rendered with view-dependent opacity.</em>
+              <em>Note: All 2Xplat results and visualizations on DL3DV use view-dependent opacity unless otherwise
+                stated.</em>
             </p>
+
           </div>
         </div>
       </div>
@@ -1204,11 +1217,15 @@
           <div class="content has-text-justified">
             <p>
               <b>2Xplat</b> follows a two-expert design that explicitly decouples geometry estimation from appearance
-              modeling for pose-free feed-forward 3D Gaussian Splatting. A dedicated geometry expert first predicts
-              camera poses from uncalibrated input views, and those estimated poses are then passed to an appearance
-              expert that synthesizes the final 3D Gaussian representation. This decomposition allows each component to
-              focus on a more specialized role, leading to stronger reconstruction quality and more robust feed-forward
-              3DGS generation.
+              modeling for pose-free feed-forward 3D Gaussian Splatting. A dedicated geometry expert uses <strong>coarse
+                tokens</strong> to predict camera poses from uncalibrated input views. Guided by these estimated poses,
+              the
+              appearance expert
+              leverages <strong>fine tokens</strong> to capture local textures and fine-grained visual details,
+              synthesizing
+              a detailed 3D Gaussian representation. By assigning camera pose estimation and detail-rich Gaussian
+              synthesis to specialized experts, this design improves reconstruction quality and supports more robust
+              feed-forward 3DGS generation.
             </p>
           </div>
         </div>
@@ -1495,9 +1512,13 @@
 
             <div class="video-slider-container" data-view="32">
               <div class="video-slider-wrapper js-video-slider">
-                <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
+                <!-- <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
                   disableremoteplayback>
                   <source src="static/videos/comparison/ours_12v/new_0.mp4" type="video/mp4">
+                </video> -->
+                <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
+                  disableremoteplayback>
+                  <source src="static/videos/comparison/ours_12v_novdo/new_0.mp4" type="video/mp4">
                 </video>
                 <video preload="metadata" class="video-right" autoplay muted loop playsinline disablepictureinpicture
                   disableremoteplayback>
@@ -1533,9 +1554,13 @@
 
             <div class="video-slider-container" data-view="32">
               <div class="video-slider-wrapper js-video-slider">
-                <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
+                <!-- <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
                   disableremoteplayback>
                   <source src="static/videos/comparison/ours_12v/ours_4.mp4" type="video/mp4">
+                </video> -->
+                <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
+                  disableremoteplayback>
+                  <source src="static/videos/comparison/ours_12v_novdo/ours_4.mp4" type="video/mp4">
                 </video>
                 <video preload="metadata" class="video-right" autoplay muted loop playsinline disablepictureinpicture
                   disableremoteplayback>
@@ -1552,9 +1577,13 @@
 
             <div class="video-slider-container" data-view="32">
               <div class="video-slider-wrapper js-video-slider">
-                <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
+                <!-- <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
                   disableremoteplayback>
                   <source src="static/videos/comparison/ours_12v/ours_1.mp4" type="video/mp4">
+                </video> -->
+                <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
+                  disableremoteplayback>
+                  <source src="static/videos/comparison/ours_12v_novdo/ours_1.mp4" type="video/mp4">
                 </video>
                 <video preload="metadata" class="video-right" autoplay muted loop playsinline disablepictureinpicture
                   disableremoteplayback>
@@ -1571,9 +1600,13 @@
 
             <div class="video-slider-container" data-view="32">
               <div class="video-slider-wrapper js-video-slider">
-                <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
+                <!-- <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
                   disableremoteplayback>
                   <source src="static/videos/comparison/ours_12v/ours_5.mp4" type="video/mp4">
+                </video> -->
+                <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
+                  disableremoteplayback>
+                  <source src="static/videos/comparison/ours_12v_novdo/ours_5.mp4" type="video/mp4">
                 </video>
                 <video preload="metadata" class="video-right" autoplay muted loop playsinline disablepictureinpicture
                   disableremoteplayback>
@@ -1590,9 +1623,13 @@
 
             <div class="video-slider-container" data-view="32">
               <div class="video-slider-wrapper js-video-slider">
-                <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
+                <!-- <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
                   disableremoteplayback>
                   <source src="static/videos/comparison/ours_12v/ours_2.mp4" type="video/mp4">
+                </video> -->
+                <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
+                  disableremoteplayback>
+                  <source src="static/videos/comparison/ours_12v_novdo/ours_2.mp4" type="video/mp4">
                 </video>
                 <video preload="metadata" class="video-right" autoplay muted loop playsinline disablepictureinpicture
                   disableremoteplayback>
@@ -1609,13 +1646,17 @@
 
             <div class="video-slider-container" data-view="32">
               <div class="video-slider-wrapper js-video-slider">
-                <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
+                <!-- <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
                   disableremoteplayback>
                   <source src="static/videos/comparison/ours_12v/ours_3.mp4" type="video/mp4">
+                </video> -->
+                <video preload="metadata" class="video-left" autoplay muted loop playsinline disablepictureinpicture
+                  disableremoteplayback>
+                  <source src="static/videos/comparison/ours_12v_novdo/new_2.mp4" type="video/mp4">
                 </video>
                 <video preload="metadata" class="video-right" autoplay muted loop playsinline disablepictureinpicture
                   disableremoteplayback>
-                  <source src="static/videos/comparison/yono_12v/yono_3.mp4" type="video/mp4">
+                  <source src="static/videos/comparison/yono_12v/new_2.mp4" type="video/mp4">
                 </video>
                 <div class="slider-bar"></div>
                 <div class="slider-handle"></div>
@@ -1629,7 +1670,9 @@
           </div>
           <div class="has-text-centered">
             <p class="subtitle is-5">Comparison between 2Xplat and YoNoSplat on the <b>DL3DV</b> dataset using <b>12</b>
-              context views with a resolution of 224×224.</p>
+              context views with a resolution of 224×224. For a fair comparison, 2Xplat does <b>not use view-dependent
+                opacity</b> in this
+              comparison.</p>
           </div>
         </div>
       </div>
