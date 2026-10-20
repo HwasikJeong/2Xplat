@@ -1,7 +1,10 @@
 <div align="center">
 <h1>2<img src="./assets/x-gradient.svg" alt="X" style="height: 2em; vertical-align: -0.1em; margin: 0 2px;">plat: Decoupling Geometry and Appearance Modeling for Feed-Forward 3D Gaussian Splatting</h1>
 
- [Hwasik Jeong](https://github.com/HwasikJeong), [Seungryong Lee](https://github.com/sngryongLee), [Gyeongjin Kang](https://gynjn.github.io/info/), [Seungkwon Yang](https://github.com/yang-gwon2), [Xiangyu Sun](https://github.com/Xiangyu1Sun), [Seungtae Nam](https://github.com/stnamjef), [Eunbyung Park](https://silverbottlep.github.io/index.html)
+ [Hwasik Jeong](https://github.com/HwasikJeong)\*, [Seungryong Lee](https://github.com/sngryongLee)\*, [Gyeongjin Kang](https://gynjn.github.io/info/), [Seungkwon Yang](https://github.com/yang-gwon2), [Xiangyu Sun](https://github.com/Xiangyu1Sun), [Seungtae Nam](https://github.com/stnamjef), [Eunbyung Park](https://silverbottlep.github.io/index.html)
+
+\*Equal contribution
+
 </div>
 
 <div align="center" style="margin-top: 2em; margin-bottom: 1.0em">
@@ -13,6 +16,9 @@
 </div>
 
 ## News
+
+**[Oct 2026]** 🎉 Excited to share [FineSplat](https://hyebinny.github.io/FineSplat/)! Built on top of our 2Xplat framework, it achieves state-of-the-art results in pose-free feedforward Gaussian splatting while using fewer Gaussians. Check it out!
+
 **[Aug 2026]** We updated the paper on ArXiv, resolving some issues regarding fair comparisons and missing details.
 
 **[Aug 2026]** 🚀 Released 2Xplat v2, trained a new appearance expert with multi-resolution support on 11 datasets comprising nearly 34M samples! The [2Xplat v2 checkpoint](https://huggingface.co/HwasikJeong/2Xplat/resolve/main/2xplat_v2_hr.pt) and demo are now available on Hugging Face.
